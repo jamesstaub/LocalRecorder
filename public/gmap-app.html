@@ -1,0 +1,20 @@
+<google-maps-api
+  api-key="AIzaSyAIgpRwS9FaawjzGUO4g7Qp3RIeHohHNvE"
+  version="3.exp">
+</google-maps-api>
+
+<script>
+// proof of concept to reverse geocode with google map api
+  var mapsAPI = document.querySelector('google-maps-api');
+  mapsAPI.addEventListener('api-load', function(e) {
+    var geocoder = new this.api.Geocoder();
+    var latlng = { lat: 42.307321099999996, lng: -71.1124754 };
+    geocoder.geocode({'location': latlng}, function (results, status) {
+      if (status === 'OK') {
+        if (results[1]) {
+          console.log(results[1].formatted_address);
+        }
+      }
+    });
+  });
+</script>
