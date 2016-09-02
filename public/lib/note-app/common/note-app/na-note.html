@@ -143,6 +143,9 @@
       },
 
       updateGeoLocation(latitude, longitude) {
+        if (!latitude || !longitude) {
+          console.log('location not found yet');
+        }
         this.$.latitude.textContent = latitude;
         this.$.longitude.textContent = longitude;
       },
