@@ -1,7 +1,7 @@
-<link rel="import" href="bower_components/note-app/common/note-app/na-elements.html">
+<link rel="import" href="lib/note-app/common/note-app/na-elements.html">
+<link rel="import" href="lib/geo-location/geo-location.html">
 <link rel="import" href="bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 <link rel="import" href="bower_components/polymerfire/polymerfire.html">
-<link rel="import" href="bower_components/geo-location/geo-location.html">
 
 
 <dom-module id="note-app">
@@ -36,7 +36,9 @@
 
     <na-editor
       id="editor"
-      note="{{note.editableNote}}"
+      note="{{editableNote}}"
+      latitude="[[lat]]"
+      longitude="[[lng]]"
       on-close="commitChange">
     </na-editor>
 
@@ -44,7 +46,7 @@
       id="document"
       app-name="local-recorder"
       path="[[editableNoteId]]"
-      data="{{note.editableNote}}">
+      data="{{editableNote}}">
     </firebase-document>
 
     <geo-location
@@ -53,13 +55,13 @@
       longitude="{{lng}}">
     </geo-location>
 
-    <!-- <script>
+    <script>
       // report location on geo response for testing
       var loc = document.querySelector('geo-location');
       loc.addEventListener('geo-response', function(e) {
         console.log('lat:' + this.latitude, 'lng:' + this.longitude);
       });
-    </script> -->
+    </script>
 
 
     <firebase-query
