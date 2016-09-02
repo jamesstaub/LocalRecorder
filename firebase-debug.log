@@ -1,0 +1,14 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/Cellar/node4-lts/4.2.2/bin/node /usr/local/bin/firebase serve
+[debug] CLI Version:  3.0.7
+[debug] Platform:     darwin
+[debug] Node Version: v6.4.0
+[debug] Time:         Thu Sep 01 2016 20:10:26 GMT-0400 (EDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /Users/james/repos/local-recorder-polymer
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000
