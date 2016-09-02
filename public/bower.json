@@ -1,0 +1,43 @@
+{
+  "name": "local-recorder",
+  "homepage": "https://github.com/jamesstaub/LocalRecorder",
+  "authors": [
+    "James Staub <james@courbanize.com>"
+  ],
+  "description": "a polymer based app for recording audio with geolocation",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "polymer",
+    "geolocation",
+    "recorder"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "app-storage": "polymerelements/app-storage#^0.9.0",
+    "app-pouchdb": "polymerelements/app-pouchdb#^0.9.0",
+    "font-roboto": "polymerelements/font-roboto#^1.0.0",
+    "firebase": "^3.0",
+    "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#^1.0.0",
+    "iron-behaviors": "PolymerElements/iron-behaviors#^1.0.0",
+    "google-apis": "^1.1.6",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
+    "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#^1.0.0",
+    "iron-icon": "polymerelements/iron-icon#^1.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^1.0.0",
+    "paper-button": "polymerelements/paper-button#^1.0.0",
+    "paper-icon-button": "polymerelements/paper-icon-button#^1.0.0",
+    "paper-fab": "polymerelements/paper-fab#^1.0.0",
+    "platinum-sw": "polymerelements/platinum-sw#^1.3.0",
+    "polymerfire": "firebase/polymerfire#~0.9.0",
+    "web-animations-js": "web-animations/web-animations-js#^2.2.1"
+  }
+}
