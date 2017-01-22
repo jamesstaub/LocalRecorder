@@ -2,7 +2,7 @@
 <link rel="import" href="lib/geo-location/geo-location.html">
 <link rel="import" href="bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 <link rel="import" href="bower_components/polymerfire/polymerfire.html">
-
+<link rel="import" href="recorder-app.html">
 
 <dom-module id="note-app">
   <template>
@@ -55,12 +55,16 @@
       longitude="{{lng}}">
     </geo-location>
 
+    <recorder-app
+    data="{{mp3Blob}}"
+    ></recorder-app>
+
     <script>
       // report location on geo response for testing
-      var loc = document.querySelector('geo-location');
-      loc.addEventListener('geo-response', function(e) {
-        console.log('lat:' + this.latitude, 'lng:' + this.longitude);
-      });
+      // var loc = document.querySelector('geo-location');
+      // loc.addEventListener('geo-response', function(e) {
+      //   console.log('lat:' + this.latitude, 'lng:' + this.longitude);
+      // });
     </script>
 
 
