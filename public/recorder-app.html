@@ -70,6 +70,12 @@
       // create WAV download link using audio data blob
       createDownloadLink();
 
+      let mp3DataPromise = recorder.mp3Data;
+
+      mp3DataPromise.then(function(data) {
+        debugger;
+      });
+
       recorder.clear();
     }
 
