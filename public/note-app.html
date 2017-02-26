@@ -27,6 +27,8 @@
       user="{{user}}">
     </firebase-auth>
 
+    <recorder-app></recorder-app>
+
     <paper-fab
       icon="add"
       on-tap="create"
@@ -55,10 +57,6 @@
       longitude="{{lng}}">
     </geo-location>
 
-    <recorder-app
-    data="{{mp3Blob}}"
-    ></recorder-app>
-
     <script>
       // report location on geo response for testing
       // var loc = document.querySelector('geo-location');
@@ -66,7 +64,6 @@
       //   console.log('lat:' + this.latitude, 'lng:' + this.longitude);
       // });
     </script>
-
 
     <firebase-query
       id="query"

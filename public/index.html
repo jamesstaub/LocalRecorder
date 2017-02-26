@@ -36,19 +36,23 @@
       clients-claim
       reload-on-install
       href="sw-import.js">
+
       <platinum-sw-cache
           default-cache-strategy="networkFirst">
       </platinum-sw-cache>
+
     </platinum-sw-register>
 
     <firebase-app
       name="local-recorder"
       api-key="AIzaSyAG4VDqI1doAfsWIBKsPRQ8Bx2pz3LF-Gk"
       auth-domain="local-recorder.firebaseapp.com"
+      storage-bucket: "local-recorder.appspot.com"
       database-url="https://local-recorder.firebaseio.com">
     </firebase-app>
 
     <note-app></note-app>
+
 
   </body>
 </html>

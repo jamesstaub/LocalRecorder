@@ -1,5 +1,8 @@
 <script src="lib/Recordmp3js/js/recordmp3.js"></script>
-<!-- <script src="lib/record-mp3/jquery-1.11.0.min.js"></script> -->
+
+<link rel="import" href="bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="bower_components/polymerfire/firebase-storage-script.html">
+
 
 <dom-module id="recorder-app">
   <template>
@@ -16,7 +19,6 @@
     </style>
 
     <!-- <link href="css/style.css" rel="stylesheet" type="text/css" /> -->
-
     <!-- <h1>Record to MP3 Test</h1> -->
 
     <button onclick="startRecording(this);">record</button>
@@ -24,16 +26,15 @@
 
     <h2>Recordings</h2>
     <ul id="recordingslist"></ul>
-
     <h2>Log</h2>
     <pre id="log"></pre>
+
   </template>
   <script>
 
     function __log(e, data) {
       console.log('e:', e );
       console.log('data:', data );
-      // log.innerHTML += "\n" + e + " " + (data || '');
     }
 
     var audio_context;
@@ -49,7 +50,7 @@
       __log('Input connected to audio context destination.');
 
       recorder = new Recorder(input, {
-        numChannels: 1
+        numChannels: 1,
       });
       __log('Recorder initialised.');
     }
@@ -73,7 +74,89 @@
       let mp3DataPromise = recorder.mp3Data;
 
       mp3DataPromise.then(function(data) {
-        debugger;
+
+        var config = {
+          apiKey: 'AIzaSyAG4VDqI1doAfsWIBKsPRQ8Bx2pz3LF-Gk',
+          authDomain: 'local-recorder.firebaseapp.com',
+          databaseURL: 'https://local-recorder.firebaseio.com',
+          storageBucket: 'local-recorder.appspot.com'
+        };
+
+        firebase.initializeApp(config);
+
+        // Points to the root reference
+        var storageRef = firebase.storage().ref();
+
+        // Points to 'images'
+        var imagesRef = storageRef.child('images');
+
+        // Points to 'images/space.jpg'
+        // Note that you can use variables to create child values
+        var fileName = 'space.jpg';
+        var spaceRef = imagesRef.child(fileName);
+
+        // File path is 'images/space.jpg'
+        var path = spaceRef.fullPath
+
+        // File name is 'space.jpg'
+        var name = spaceRef.name
+
+        // Points to 'images'
+        var imagesRef = spaceRef.parent;
+
+        // File or Blob named mountains.jpg
+        var file = data;
+        file.name = 'sound.mp3'
+
+        // Create the file metadata
+        var metadata = {
+          contentType: 'audio/mpeg'
+        };
+
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          function(snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+          }, function(error) {
+          switch (error.code) {
+            case 'storage/unauthorized':
+              // User doesn't have permission to access the object
+              break;
+
+            case 'storage/canceled':
+              // User canceled the upload
+              break;
+
+            case 'storage/unknown':
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        }, function() {
+          // Upload completed successfully, now we can get the download URL
+          var downloadURL = uploadTask.snapshot.downloadURL;
+        });
+
+
+
+
+
+
+
+
+
       });
 
       recorder.clear();
@@ -122,11 +205,15 @@
       }, startUserMedia, function(e) {
         __log('No live audio input: ' + e);
       });
+
     };
   </script>
   <script>
-    Polymer({
-      is: 'recorder-app',
-    });
+  Polymer({
+    is: 'recorder-app',
+
+  });
   </script>
+
+
 </dom-module>
